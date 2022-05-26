@@ -1,0 +1,17 @@
+current directory: /home/noahal/Development/code/travel-book/vendor/bundle/ruby/2.7.0/gems/thin-1.8.1/ext/thin_parser
+/usr/share/rvm/rubies/ruby-2.7.4/bin/ruby -I /usr/share/rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0 -r ./siteconf20220526-19209-h5wzgd.rb extconf.rb
+checking for main() in -lc... yes
+creating Makefile
+
+current directory: /home/noahal/Development/code/travel-book/vendor/bundle/ruby/2.7.0/gems/thin-1.8.1/ext/thin_parser
+make "DESTDIR=" clean
+
+current directory: /home/noahal/Development/code/travel-book/vendor/bundle/ruby/2.7.0/gems/thin-1.8.1/ext/thin_parser
+make "DESTDIR="
+compiling parser.c
+compiling thin.c
+linking shared-object thin_parser.so
+
+current directory: /home/noahal/Development/code/travel-book/vendor/bundle/ruby/2.7.0/gems/thin-1.8.1/ext/thin_parser
+make "DESTDIR=" install
+/bin/install -m 0755 thin_parser.so ./.gem.20220526-19209-16tcc9n
