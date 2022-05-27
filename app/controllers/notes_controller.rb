@@ -8,4 +8,5 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     note.to_json(include: :destination)
   end
+
 end
