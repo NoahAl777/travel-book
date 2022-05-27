@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   get "/notes" do
-    "Notes"
+    notes = Note.all
+    notes.to_json(include: :destination)
   end
 end
