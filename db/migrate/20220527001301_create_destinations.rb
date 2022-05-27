@@ -4,7 +4,7 @@ class CreateDestinations < ActiveRecord::Migration[6.1]
       t.string :country
       t.string :state_province
       t.string :city
-      t.int :zipcode
+      t.integer :zipcode
       t.string :image
   end
 end
