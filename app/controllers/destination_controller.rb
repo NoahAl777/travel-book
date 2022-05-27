@@ -14,4 +14,8 @@ class DestinationsController < ApplicationController
     destination.to_json
   end
 
+  delete "/destinations/:id" do
+    destination = Destination.find(params[:id])
+    destination.destroy
+  end
 end
