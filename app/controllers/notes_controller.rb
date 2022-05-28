@@ -9,9 +9,10 @@ class NotesController < ApplicationController
     note.to_json(include: :destination)
   end
 
-  post "/notes" do
-    note = Note.create(params)
-    note.to_json
+  post "/destinations/:destination_id/notes" do
+    destination = Destination.find(params[:destination_id])
+    destination.notes.create(params)
+    destination.notes.last.to_json
   end
 
   delete "/notes/:id" do
