@@ -9,4 +9,8 @@ class NotesController < ApplicationController
     note.to_json(include: :destination)
   end
 
+  post "/notes" do
+    note = Note.create(params)
+    note.to_json
+  end
 end
