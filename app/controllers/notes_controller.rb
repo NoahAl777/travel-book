@@ -13,4 +13,9 @@ class NotesController < ApplicationController
     note = Note.create(params)
     note.to_json
   end
+
+  delete "/notes/:id" do
+    note = Note.find(params[:id])
+    note.destroy
+  end
 end
