@@ -27,15 +27,19 @@ class DestinationsController < ApplicationController
   end
 
   patch "/destinations/:id" do
-    destination = Destination.find_by(id: params[:id])
-    destination.update(
-      country: params[:country],
-      state_province: params[:state_province],
-      city: params[:city],
-      zipcode: params[:zipcode],
-      image: params[:image]
-    )
-    destination.to_json
+    begin
+      destination = Destination.find(params[:id])
+      destination.update(
+        country: params[:country],
+        state_province: params[:state_province],
+        city: params[:city],
+        zipcode: params[:zipcode],
+        image: params[:image]
+      )
+      destination.to_json
+    rescue ActiveRecord::RecordNotFound => e
+      {errors: e}.to_json
+    end
   end
 
 end
