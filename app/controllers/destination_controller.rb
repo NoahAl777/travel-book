@@ -14,8 +14,12 @@ class DestinationsController < ApplicationController
   end
 
   post "/destinations" do
-    destination = Destination.create(params)
-    destination.to_json
+    destination = Destination.new(params)
+    if destination.save 
+      destination.to_json
+    else
+      {errors: destination.errors.full_messages.to_sentence}.to_json
+    end
   end
 
   delete "/destinations/:id" do
