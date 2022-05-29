@@ -6,8 +6,11 @@ class DestinationsController < ApplicationController
   end
 
   get "/destinations/:id" do
-    destination = Destination.find_by(id: params[:id])
-    destination.to_json(include: :notes)
+    begin
+      Destination.find(params[:id]).to_json(include: :notes)
+    rescue ActiveRecord::RecordNotFound => e
+      {errors: e}.to_json
+    end
   end
 
   post "/destinations" do
