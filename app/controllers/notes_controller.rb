@@ -27,15 +27,19 @@ class NotesController < ApplicationController
   end
 
   patch "/notes/:id" do
-    note = Note.find(params[:id])
-    note.update(
-      overall_rating: params[:overall_rating],
-      safety_rating: params[:safety_rating],
-      food_rating: params[:food_rating],
-      must_do: params[:must_do],
-      additional_notes: params[:additional_notes]
-    )
-    note.to_json
+    begin
+      note = Note.find(params[:id])
+      note.update(
+        overall_rating: params[:overall_rating],
+        safety_rating: params[:safety_rating],
+        food_rating: params[:food_rating],
+        must_do: params[:must_do],
+        additional_notes: params[:additional_notes]
+      )
+      note.to_json
+    rescue ActiveRecord::RecordNotFound => e 
+      {errors: e}.to_json
+    end
   end
   
 end
