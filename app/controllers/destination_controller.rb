@@ -19,8 +19,11 @@ class DestinationsController < ApplicationController
   end
 
   delete "/destinations/:id" do
-    destination = Destination.find_by(id: params[:id])
-    destination.destroy
+    begin
+      Destination.find(params[:id]).destroy
+    rescue ActiveRecord::RecordNotFound => e
+      {errors: e}.to_json
+    end
   end
 
   patch "/destinations/:id" do
