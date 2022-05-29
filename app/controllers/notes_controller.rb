@@ -19,8 +19,11 @@ class NotesController < ApplicationController
   end
 
   delete "/notes/:id" do
-    note = Note.find(params[:id])
-    note.destroy
+    begin
+      Note.find(params[:id]).destroy
+    rescue ActiveRecord::RecordNotFound => e
+      {errors: e}.to_json
+    end
   end
 
   patch "/notes/:id" do
