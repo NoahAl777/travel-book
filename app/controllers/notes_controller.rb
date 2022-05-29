@@ -14,8 +14,12 @@ class NotesController < ApplicationController
 
   post "/destinations/:destination_id/notes" do
     destination = Destination.find(params[:destination_id])
-    destination.notes.create(params)
-    destination.notes.last.to_json
+    note = destination.notes.new(params)
+    if note.save
+      note.to_json
+    else
+      {errors: note.errors.full_messages.to_sentence}.to_json
+    end
   end
 
   delete "/notes/:id" do
