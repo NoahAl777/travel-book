@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2022_05_27_001336) do
     t.string "city"
     t.integer "zipcode"
     t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notes", force: :cascade do |t|
@@ -27,6 +29,8 @@ ActiveRecord::Schema.define(version: 2022_05_27_001336) do
     t.string "must_do"
     t.string "additional_notes"
     t.integer "destination_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

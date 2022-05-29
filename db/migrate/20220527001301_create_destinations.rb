@@ -6,6 +6,8 @@ class CreateDestinations < ActiveRecord::Migration[6.1]
       t.string :city
       t.integer :zipcode
       t.string :image
+
+      t.timestamps
     end
   end
 end

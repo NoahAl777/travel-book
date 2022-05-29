@@ -7,6 +7,8 @@ class CreateNotes < ActiveRecord::Migration[6.1]
       t.string :must_do
       t.string :additional_notes
       t.integer :destination_id
+
+      t.timestamps
     end
   end
 end
