@@ -5,8 +5,11 @@ class NotesController < ApplicationController
   end
 
   get "/notes/:id" do
-    note = Note.find(params[:id])
-    note.to_json(include: :destination)
+    begin  
+      Note.find(params[:id]).to_json(include: :destination)
+    rescue ActiveRecord::RecordNotFound => e
+      {errors: e}.to_json
+    end
   end
 
   post "/destinations/:destination_id/notes" do
