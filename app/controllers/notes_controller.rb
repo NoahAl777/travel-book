@@ -13,12 +13,16 @@ class NotesController < ApplicationController
   end
 
   post "/destinations/:destination_id/notes" do
-    destination = Destination.find(params[:destination_id])
-    note = destination.notes.new(params)
-    if note.save
-      note.to_json
-    else
-      {errors: note.errors.full_messages.to_sentence}.to_json
+    begin
+      destination = Destination.find(params[:destination_id])
+      note = destination.notes.new(params)
+      if note.save
+        note.to_json
+      else
+        {errors: note.errors.full_messages.to_sentence}.to_json
+      end
+    rescue ActiveRecord::RecordNotFound => e 
+      { errors: e}.to_json
     end
   end
 
