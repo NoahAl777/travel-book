@@ -1,11 +1,12 @@
 class DestinationsController < ApplicationController
+
   get "/destinations" do
     destinations = Destination.all
     destinations.to_json(include: :notes)
   end
 
   get "/destinations/:id" do
-    destination = Destination.find(params[:id])
+    destination = Destination.find_by(id: params[:id])
     destination.to_json(include: :notes)
   end
 
@@ -15,12 +16,12 @@ class DestinationsController < ApplicationController
   end
 
   delete "/destinations/:id" do
-    destination = Destination.find(params[:id])
+    destination = Destination.find_by(id: params[:id])
     destination.destroy
   end
 
   patch "/destinations/:id" do
-    destination = Destination.find(params[:id])
+    destination = Destination.find_by(id: params[:id])
     destination.update(
       country: params[:country],
       state_province: params[:state_province],
@@ -30,4 +31,5 @@ class DestinationsController < ApplicationController
     )
     destination.to_json
   end
+
 end
