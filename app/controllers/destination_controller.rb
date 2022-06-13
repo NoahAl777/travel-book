@@ -40,7 +40,11 @@ class DestinationsController < ApplicationController
         zipcode: params[:zipcode],
         image: params[:image]
       )
+      if destination.errors.any?
+        {errors: destination.errors.full_messages.to_sentence}.to_json
+      else
       destination.to_json
+      end
     rescue ActiveRecord::RecordNotFound => e
       {errors: e}.to_json
     end
