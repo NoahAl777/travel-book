@@ -44,7 +44,11 @@ class NotesController < ApplicationController
         must_do: params[:must_do],
         additional_notes: params[:additional_notes]
       )
-      note.to_json
+      if note.errors.any?
+        {errors: note.errors.full_messages.to_sentence}.to_json
+      else
+        note.to_json
+      end
     rescue ActiveRecord::RecordNotFound => e 
       {errors: e}.to_json
     end
