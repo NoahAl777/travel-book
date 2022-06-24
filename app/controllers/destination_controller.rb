@@ -43,7 +43,7 @@ class DestinationsController < ApplicationController
       if destination.errors.any?
         {errors: destination.errors.full_messages.to_sentence}.to_json
       else
-      destination.to_json
+      destination.to_json(include: :notes)
       end
     rescue ActiveRecord::RecordNotFound => e
       {errors: e}.to_json
